@@ -1,7 +1,7 @@
 
-# QR Code Generator with Icons
+# Bulk QR Code Generator
 
-This Python project generates QR codes from URLs listed in a CSV file and overlays custom icons at the center of each QR code. The resulting QR codes are saved as high-resolution PNG files.
+This Python script generates QR codes from URLs listed in a CSV file and overlays custom icons at the center of each QR code. The resulting QR codes are saved as high-resolution PNG files.
 
 ## Features
 
@@ -9,7 +9,6 @@ This Python project generates QR codes from URLs listed in a CSV file and overla
 - Allows overlaying an icon image at the center of the QR code.
 - Supports high-resolution QR codes (3000x3000 pixels).
 - Maintains transparency of the icon and ensures the QR code remains scannable.
-- Automatically organizes QR codes in an output folder.
 
 ---
 
@@ -73,7 +72,7 @@ The generated QR codes will be saved in a folder named `qr_codes`, located in th
 
 An example of a generated QR code with an icon:
 
-![Example QR Code](example_qr_code.png)
+<img src="images/example_qr_code.png" alt="drawing" style="width:200px;"/>
 
 ---
 
