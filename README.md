@@ -34,6 +34,7 @@ pip install segno pillow
 ├── input.csv           # CSV file containing URLs, icons, and filenames
 ├── qr_codes/           # Folder where the generated QR codes are saved
 ├── qr_generator.py     # Main Python script
+├── images/             # Folder containing images for README.md
 └── README.md           # Project documentation
 ```
 
