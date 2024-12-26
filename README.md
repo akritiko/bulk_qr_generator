@@ -1,14 +1,22 @@
 
-# Bulk QR Code Generator
+# QR Code Generator with Icons and GUI
 
-This Python script generates QR codes from URLs listed in a CSV file and overlays custom icons at the center of each QR code. The resulting QR codes are saved as high-resolution PNG files.
+This Python project allows users to generate QR codes with an optional feature to embed custom icons at the center. The project supports two modes:
+1. **Batch Mode**: Generate multiple QR codes by processing a CSV file.
+2. **Single QR Mode**: Generate a single QR code interactively, either via console or using the graphical user interface (GUI).
+
+The GUI provides an intuitive interface for both modes, making the tool accessible to users of all technical levels.
+
+---
 
 ## Features
 
-- Generates QR codes from URLs with customizable filenames.
+- **Batch Mode**: Generate multiple QR codes by reading data from a CSV file.
+- **Single QR Mode**: Create a single QR code interactively via console inputs or the GUI.
+- Graphical User Interface (GUI) for easy input and operation.
 - Allows overlaying an icon image at the center of the QR code.
 - Supports high-resolution QR codes (3000x3000 pixels).
-- Maintains transparency of the icon and ensures the QR code remains scannable.
+- Automatically organizes QR codes in an output folder.
 
 ---
 
@@ -18,8 +26,9 @@ This project requires Python 3.7 or higher and the following Python libraries:
 
 - **[Segno](https://pypi.org/project/segno/):** For generating QR codes.
 - **[Pillow](https://pillow.readthedocs.io):** For handling image processing.
+- **[Tkinter](https://docs.python.org/3/library/tkinter.html):** Built-in library for GUI development (no additional installation required).
 
-You can install the required libraries using:
+Install the required dependencies using:
 
 ```bash
 pip install segno pillow
@@ -31,41 +40,46 @@ pip install segno pillow
 
 ```plaintext
 .
-├── input.csv           # CSV file containing URLs, icons, and filenames
+├── main.py             # Core QR code generation logic
+├── gui.py              # Graphical User Interface
+├── input.csv           # Example CSV file containing URLs, icons, and filenames
 ├── qr_codes/           # Folder where the generated QR codes are saved
-├── qr_generator.py     # Main Python script
-├── images/             # Folder containing images for README.md
-└── README.md           # Project documentation
+├── images/             # Folder where the images related to the README.md are saved
+├── README.md           # Project documentation
 ```
 
 ---
 
 ## Usage Instructions
 
-### Step 1: Prepare the Input CSV File
-Create a CSV file named `input.csv` (or update the script with your file name). The file should have the following structure:
+### Option 1: Using the GUI
 
-| url                  | icon          | file name      |
-|----------------------|---------------|----------------|
-| https://example.com  | icon1.png     | example_qr     |
-| https://another.com  | icon2.png     | another_qr     |
+1. Run the `gui.py` file:
+   ```bash
+   python gui.py
+   ```
+2. Select one of the two tabs:
+   - **Single QR Code**: Enter the URL, select an icon (optional), and specify a file name to generate a single QR code.
+   - **Batch QR Codes**: Select a CSV file containing multiple QR code details, and the program will generate all QR codes in bulk.
+3. Generated QR codes are saved in the `qr_codes` folder.
 
-- **`url`**: The URL the QR code will link to.
-- **`icon`**: File path to the icon image to overlay (must exist in the same directory or provide the full path).
-- **`file name`**: Name for the generated QR code PNG file (without extension).
+### Option 2: Using the Console
 
-### Step 2: Place the Icon Images
-Ensure all icon images referenced in the CSV file exist and are accessible. Icons should ideally be square-shaped for the best results.
+#### Run the `main.py` Script
+You can also use the console to generate QR codes.
 
-### Step 3: Run the Script
-Execute the Python script:
+1. **Single QR Mode**:
+   Modify your script or call the `generate_single_qr` function from `main.py` by passing the `url`, `icon_path`, and `file_name` arguments.
 
-```bash
-python qr_generator.py
-```
+2. **Batch QR Mode**:
+   Prepare a CSV file with the following structure:
 
-### Step 4: Check the Output
-The generated QR codes will be saved in a folder named `qr_codes`, located in the same directory as the script. Each QR code will be named according to the `file name` specified in the CSV file.
+   | url                  | icon          | file name      |
+   |----------------------|---------------|----------------|
+   | https://example.com  | icon1.png     | example_qr     |
+   | https://another.com  | icon2.png     | another_qr     |
+
+   Then call the `generate_from_csv` function with the path to your CSV file.
 
 ---
 
@@ -73,14 +87,14 @@ The generated QR codes will be saved in a folder named `qr_codes`, located in th
 
 An example of a generated QR code with an icon:
 
-<img src="images/example_qr_code.png" alt="drawing" style="width:200px;"/>
+![Example QR Code](example_qr_code.png)
 
 ---
 
 ## Customization
 
 ### Change the QR Code Resolution
-The script generates QR codes with a resolution of 3000x3000 pixels by default. You can modify the `scale` parameter in the script to adjust the resolution:
+The script generates QR codes with a resolution of 3000x3000 pixels by default. You can modify the `scale` parameter in the `main.py` file:
 
 ```python
 qr.save(qr_file_path, scale=30)  # Default resolution
@@ -101,9 +115,11 @@ icon_size = int(qr_width * 0.2)  # Icon size as 20% of QR code size
 
 ## Error Handling
 
-1. **File Not Found**: Ensure the input CSV file and referenced icon files exist in the specified paths.
+1. **File Not Found**: Ensure the input CSV file or icon file exists in the specified paths.
 2. **Invalid Image Format**: Only standard image formats (e.g., PNG, JPEG) are supported for icons.
 3. **Invalid CSV Format**: Verify that the CSV file follows the required structure.
+4. **Empty Inputs in Single QR Mode**: Ensure you provide valid inputs for the URL and file name.
+5. **GUI-Specific**: The program will prompt users with messages if required fields are missing or invalid.
 
 ---
 
