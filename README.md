@@ -1,19 +1,20 @@
 
-# QR Code Generator with Icons and GUI
+# QR Code Generator with Icons, GUI, and CLI
 
-This Python project allows users to generate QR codes with an optional feature to embed custom icons at the center. The project supports two modes:
+This Python project allows users to generate QR codes with an optional feature to embed custom icons at the center. The project supports three modes:
 1. **Batch Mode**: Generate multiple QR codes by processing a CSV file.
 2. **Single QR Mode**: Generate a single QR code interactively, either via console or using the graphical user interface (GUI).
+3. **Command-Line Interface (CLI)**: Generate single or batch QR codes directly from the command line.
 
-The GUI provides an intuitive interface for both modes, making the tool accessible to users of all technical levels.
+The GUI provides an intuitive interface for both modes, while the CLI caters to advanced users and automation scripts.
 
 ---
 
 ## Features
 
 - **Batch Mode**: Generate multiple QR codes by reading data from a CSV file.
-- **Single QR Mode**: Create a single QR code interactively via console inputs or the GUI.
-- Graphical User Interface (GUI) for easy input and operation.
+- **Single QR Mode**: Create a single QR code via console inputs or GUI.
+- **Command-Line Interface (CLI)**: Generate QR codes directly from the terminal.
 - Allows overlaying an icon image at the center of the QR code.
 - Supports high-resolution QR codes (3000x3000 pixels).
 - Automatically organizes QR codes in an output folder.
@@ -40,7 +41,7 @@ pip install segno pillow
 
 ```plaintext
 .
-├── main.py             # Core QR code generation logic
+├── main.py             # Core QR code generation logic and CLI
 ├── gui.py              # Graphical User Interface
 ├── input.csv           # Example CSV file containing URLs, icons, and filenames
 ├── qr_codes/           # Folder where the generated QR codes are saved
@@ -60,36 +61,49 @@ pip install segno pillow
    ```
 2. Select one of the two tabs:
    - **Single QR Code**: Enter the URL, select an icon (optional), and specify a file name to generate a single QR code.
+   <img src="images/single_qr.png" alt="drawing" width=""/>
+
    - **Batch QR Codes**: Select a CSV file containing multiple QR code details, and the program will generate all QR codes in bulk.
+   <img src="images/bulk_qr.png" alt="drawing" width=""/>
+   
 3. Generated QR codes are saved in the `qr_codes` folder.
 
-#### Screenshots
+---
 
-**Single QR Mode**:
+### Option 2: Using the Command-Line Interface (CLI)
 
-<img src="images/single_qr.png" alt="drawing" width=""/>
+Run the `main.py` file with the appropriate subcommand for single or batch QR code generation.
 
-**Batch QR Mode**:
+#### Generate a Single QR Code
+Use the `single` subcommand to generate a single QR code:
+```bash
+python main.py single --url "https://example.com" --file_name "example" --icon "icon.png"
+```
 
-<img src="images/bulk_qr.png" alt="drawing" width=""/>
+- **`--url`**: The URL for the QR code (required).
+- **`--file_name`**: The name of the output file without the extension (required).
+- **`--icon`**: The path to an optional icon image file.
 
-### Option 2: Using the Console
+#### Generate Multiple QR Codes from a CSV File
+Use the `bulk` subcommand to generate multiple QR codes:
+```bash
+python main.py bulk --csv_file "qrcodes.csv"
+```
 
-#### Run the `main.py` Script
-You can also use the console to generate QR codes.
+- **`--csv_file`**: Path to the CSV file containing QR code details (required).
 
-1. **Single QR Mode**:
-   Modify your script or call the `generate_single_qr` function from `main.py` by passing the `url`, `icon_path`, and `file_name` arguments.
+##### CSV File Format
+The CSV file should have the following structure:
 
-2. **Batch QR Mode**:
-   Prepare a CSV file with the following structure:
+| url                  | icon          | file name      |
+|----------------------|---------------|----------------|
+| https://example.com  | icon1.png     | example_qr     |
+| https://another.com  | icon2.png     | another_qr     |
 
-   | url                  | icon          | file name      |
-   |----------------------|---------------|----------------|
-   | https://example.com  | icon1.png     | example_qr     |
-   | https://another.com  | icon2.png     | another_qr     |
+---
 
-   Then call the `generate_from_csv` function with the path to your CSV file.
+### Option 3: Using the Functions in Code
+You can call the `generate_single_qr` and `generate_from_csv` functions directly from your Python code for integration into other applications.
 
 ---
 
@@ -130,6 +144,7 @@ icon_size = int(qr_width * 0.2)  # Icon size as 20% of QR code size
 3. **Invalid CSV Format**: Verify that the CSV file follows the required structure.
 4. **Empty Inputs in Single QR Mode**: Ensure you provide valid inputs for the URL and file name.
 5. **GUI-Specific**: The program will prompt users with messages if required fields are missing or invalid.
+6. **CLI-Specific**: Missing or incorrect arguments will display an error message with usage instructions.
 
 ---
 

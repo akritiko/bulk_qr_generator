@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter import ttk
-from main import generate_single_qr, generate_from_csv
+from main2 import generate_single_qr, generate_from_csv
 
 def create_single_qr():
     """
