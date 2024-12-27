@@ -61,9 +61,11 @@ pip install segno pillow
    ```
 2. Select one of the two tabs:
    - **Single QR Code**: Enter the URL, select an icon (optional), and specify a file name to generate a single QR code.
+   
    <img src="images/single_qr.png" alt="drawing" width=""/>
 
    - **Batch QR Codes**: Select a CSV file containing multiple QR code details, and the program will generate all QR codes in bulk.
+   
    <img src="images/bulk_qr.png" alt="drawing" width=""/>
    
 3. Generated QR codes are saved in the `qr_codes` folder.
