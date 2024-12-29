@@ -5,7 +5,7 @@ from PIL import Image
 import argparse
 
 # Create output directory if not exists
-output_dir = "qr_codes"
+output_dir = "output"
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 

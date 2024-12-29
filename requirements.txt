@@ -1,0 +1,6 @@
+
+Flask>=2.2,<2.3
+Werkzeug>=2.2,<2.3
+Pillow==9.4.0
+segno==1.4.1
+
