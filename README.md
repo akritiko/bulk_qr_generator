@@ -18,6 +18,9 @@ This Python project enables users to generate QR codes with optional icons in th
 - **Cross-Platform Support**:
   - Available as a desktop app, CLI tool, or web application.
 
+## Example Output
+<img src="./docs/images/example_qr_code.png" alt="Example Output" width="300"/>
+
 ## Requirements
 
 ### General Requirements
@@ -49,7 +52,9 @@ pip install -r requirements.txt
    ```
 3. Features:
    - Single QR Code: Enter a URL, optional icon, and file name to generate a QR code.
+    <img src="./docs/images/single_qr.png" alt="Single QR Code Generation" width="500"/>
    - Bulk QR Code: Upload a CSV file with URL, icon path, and file name columns.
+     <img src="./docs/images/bulk_qr.png" alt="Bulk QR Code Generation" width="500"/>
 
 ### 2. Desktop Application
 
