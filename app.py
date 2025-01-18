@@ -99,4 +99,4 @@ def extract_filenames_from_csv(csv_path):
     return file_names
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
